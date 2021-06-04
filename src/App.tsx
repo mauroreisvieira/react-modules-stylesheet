@@ -1,20 +1,18 @@
 import * as React from 'react';
-
-import classes from './example.module.scss';
+import { Button } from './components/button/index';
 
 const App = (): React.ReactElement => {
-  const [count, setCount] = React.useState<number>(0);
+    const [count, setCount] = React.useState<number>(0);
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p className={classes.headline}>Hello Vite + React!</p>
-        <button className={classes.button} onClick={(): void => setCount((count) => count + 1)}>
-          count is: {count}
-        </button>
-      </header>
-    </div>
-  )
-}
+    return (
+        <>
+            <Button
+                onClick={(): void => setCount((count) => count + 1)}>
+                Click me
+            </Button>
+            <p>count is: { count }</p>
+        </>
+    );
+};
 
 export default App;
