@@ -1,1 +1,1 @@
-# react-modules-stylesheet
+# React Modules Stylesheet
