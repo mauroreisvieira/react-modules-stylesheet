@@ -2,29 +2,29 @@ import classNames from 'classnames';
 import * as React from 'react';
 import classes from './button.module.scss';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-    children: React.ReactNode;
-}
+type ButtonType = React.ButtonHTMLAttributes<HTMLButtonElement> & React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
-// eslint-disable-next-line react/display-name
 export const Button = React.forwardRef(
     (
-        { children, ...otherProps }: ButtonProps,
-        ref: React.Ref<HTMLButtonElement>
+        { children, ...otherProps }: ButtonType & React.PropsWithChildren<ButtonType>,
+        ref: React.Ref<HTMLButtonElement & HTMLAnchorElement>
     ): React.ReactElement => {
-        const { className, disabled, ...restProps } = otherProps;
+        const { className, disabled, href, ...restProps } = otherProps;
+
+        const TAG =  href ? 'a' : 'button';
         const computedClasses = classNames(className, classes.button, {
             [classes.disabled]: disabled,
         });
 
         return (
-            <button
+            <TAG
                 ref={ref}
+                {...restProps}
                 className={computedClasses}
-                disabled={disabled}
-                {...restProps}>
+                disabled={href ? disabled : undefined}
+                tabIndex={disabled ? -1 : undefined}>
                 { children }
-            </button>
+            </TAG>
         );
     }
 );

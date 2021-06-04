@@ -1,19 +1,24 @@
+@import "variables";
+
 .button {
+  --button-color: #{$text-color};
+  --button-background: #{$background-color};
+
   padding: 8px 16px;
-  border: none;
-  border-radius: 4px;
-  background-color: #3f51b5;
+  color: var(--button-color);
   text-transform: uppercase;
+  background-color: var(--button-background);
+  border: 0;
+  border-radius: 4px;
   cursor: pointer;
-  color: #fff;
 
   &:hover {
-    background-color: #303f9f;
+    --button-background: #{$background-color-hover};
   }
 
   &:disabled,
   &.disabled {
-    opacity: .3;
+    opacity: 0.3;
     pointer-events: none;
   }
 }
